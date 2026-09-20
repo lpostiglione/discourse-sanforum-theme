@@ -3,3 +3,16 @@
     display: none;
   }
 }
+
+// EDIT: Fix mobile width issues
+.category-list {
+    .category-name {
+        white-space: normal;
+    }
+}
+
+.badge-category__wrapper {
+    .badge-category__name {
+        max-width: 60vw;
+    }
+}

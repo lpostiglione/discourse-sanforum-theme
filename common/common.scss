@@ -25,6 +25,45 @@
   border-radius: 10px;
 }
 
+.custom-homepage-columns {
+  margin: 2em 0 2em 0;
+  padding: 0;
+  .col {
+    position: relative;
+    border-radius: var(--mint-border-radius);
+    @include mint-card-bg;
+    padding: 2em 2em 1em;
+    border-top: 8px solid var(--tertiary);
+    box-shadow: 0 8px 60px 0 rgba(103, 151, 255, 0.1),
+      0 12px 90px 0 rgba(133, 255, 103, 0.1);
+    .header-wrapper {
+      background-color: transparent;
+      a h2 {
+        color: var(--primary);
+      }
+      .btn-primary {
+        display: none;
+      }
+    }
+    .btn-more {
+      color: var(--secondary);
+      background: var(--tertiary);
+      transition: all 0.3s linear;
+      border-radius: var(--mint-border-radius);
+      text-transform: uppercase;
+      border: 1px solid var(--tertiary);
+      &:hover {
+        color: var(--secondary);
+        background: var(--tertiary-hover);
+      }
+    }
+  }
+
+  .loading-container:not(:has(.spinner)) {
+    min-height: unset;
+  }
+}
+
 .navigation-categories .search-banner {
   border-radius: var(--mint-border-radius);
   height: 350px;
@@ -358,4 +397,64 @@ summary.select-kit-header.single-select-header.dropdown-select-box-header {
   .search-advanced-filters {
     border: 1px dashed var(--tertiary);
   }
+}
+
+// Control order of plugin connectors
+.search-banner {
+  display: none;
+}
+
+.custom-homepage-columns {
+  display: none;
+}
+
+.showcased-topic-list {
+  display: none;
+}
+
+.mint-component-extensions {
+  .search-banner,
+  .showcased-topic-list {
+    display: block;
+  }
+
+  .custom-homepage-columns {
+    display: flex;
+  }
+}
+
+
+// EDIT: Username / Group Colors
+span.username {
+    &.group--VIP {
+        a {
+            color: #2169FB
+        }
+    }
+
+  &.moderator {
+        a {
+            color: #00AA00;
+        }
+  }
+
+  &.admin {
+        a {
+            color: #CB153A;
+        }
+  }
+}
+
+//CUSTOM FOOTER
+footer.main-footer {
+    margin: 2em auto;
+
+    a {
+        font-size: .9em;
+        color: var(--primary);
+
+        &:hover {
+            color: var(--primary-high);
+        }
+    }
 }
