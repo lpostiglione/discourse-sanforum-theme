@@ -3,3 +3,9 @@ HELP
 .DS_Store
 node_modules
 .eslintcache
+/.idea/.gitignore
+/.idea/discourse-sanforum-theme.iml
+/.idea/modules.xml
+/.idea/prettier.xml
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/vcs.xml

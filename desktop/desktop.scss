@@ -1,48 +1,58 @@
 @import "variables";
 
+// Hauptkarte auf allen Seiten außer Kategorien/Themenliste
 body:not(.navigation-categories, .navigation-topics) #main-outlet {
-  border-radius: var(--mint-border-radius);
-  box-shadow:
-    0 8px 60px 0 rgb(103, 151, 255, 0.1),
-    0 12px 90px 0 rgb(133, 255, 103, 0.1);
-  padding: 2em;
-  border-top: 8px solid $tertiary;
-  margin-top: 1em;
-
-  @include mint-card-bg;
+  @include sf-card;
+  padding: 2.2em 2.6em;
+  margin-top: 1.8em;
 }
 
-.boxed {
-  &.white {
-    @include mint-card-bg;
-  }
-}
-
+// Hintergrund: dezenter Star of Life oben rechts (ersetzt Mint-Kreis und -Quadrat)
 #main-outlet::after {
   content: "";
   display: block;
   position: fixed;
   z-index: -1;
-  width: 500px;
-  height: 500px;
-  border-radius: 2000px;
-  background: var(--color-circle-gradient);
-  right: 1px;
-  top: -57px;
+  width: 640px;
+  height: 640px;
+  right: -140px;
+  top: -120px;
+  background: url($star-of-life) no-repeat center / contain;
+  opacity: 0.05;
+  pointer-events: none;
 }
 
-#main-outlet::before {
-  content: "";
-  display: block;
-  position: fixed;
-  z-index: -1;
-  width: 300px;
-  height: 300px;
-  border-radius: 30px;
-  background: $color-square-webkit-gradient;
-  background: $color-square-gradient;
-  left: 70px;
-  top: 350px;
-  transform: rotate(74deg);
-  transform-origin: 0 100%;
+@if lightness($secondary) < 50% {
+  #main-outlet::after {
+    opacity: 0.06;
+  }
+}
+
+@if $sf-blue-header {
+  // In der blauen Variante sitzt der Stern im blauen Kopfbereich
+  #main-outlet::after {
+    display: none;
+  }
+
+  .welcome-banner {
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      content: "";
+      position: absolute;
+      right: 60px;
+      top: -160px;
+      width: 560px;
+      height: 560px;
+      background: url($star-of-life) no-repeat center / contain;
+      filter: brightness(0) invert(1);
+      opacity: 0.07;
+      pointer-events: none;
+    }
+  }
+}
+
+.boxed.white {
+  background: var(--sf-card);
 }

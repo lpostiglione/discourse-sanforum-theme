@@ -1,31 +1,59 @@
-@mixin mint-card-bg {
-  background: var(--primary-very-low);
+// SanForum – Star of Life Design
+// Blau = klassisches Star-of-Life-Blau, Gelb = Tagesleuchtgelb (sparsamer Akzent)
 
-  @media (prefers-color-scheme: light) {
-    // incorrect rule, see: https://github.com/stylelint-scss/stylelint-config-recommended-scss/issues/369
-    /* stylelint-disable-next-line no-invalid-position-declaration */
-    background: var(--header_background);
+:root {
+  --sf-blue: #0057a8;
+  --sf-blue-hover: #004489;
+  --sf-blue-low: #e3edf8;
+  --sf-yellow: #e9ff00;
+  --sf-ink: #1c2733;
+  --sf-ink-muted: #6b7a8c;
+  --sf-ink-soft: #4a5b6e;
+  --sf-line: #dce4ee;
+  --sf-line-soft: #eaf0f6;
+  --sf-card: #ffffff;
+  --sf-card-alt: #f9fbfd;
+  --sf-radius: 8px;
+  --sf-radius-sm: 6px;
+  --sf-shadow: 0 8px 28px rgba(0, 40, 90, 0.12);
+  --sf-font-heading: "Barlow", system-ui, sans-serif;
+  --sf-font-body: "Source Sans 3", system-ui, sans-serif;
+}
+
+// Dunkles Schema: Karten/Linien auf die dunkle Palette mappen
+@if lightness($secondary) < 50% {
+  :root {
+    --sf-blue: #4a90e2;
+    --sf-blue-hover: #3b7fd0;
+    --sf-blue-low: #1f2a38;
+    --sf-ink: #e6eaf0;
+    --sf-ink-muted: #a9b6c6;
+    --sf-ink-soft: #a9b6c6;
+    --sf-line: #26334a;
+    --sf-line-soft: #1f2a38;
+    --sf-card: #172030;
+    --sf-card-alt: #111926;
   }
 }
 
-:root {
-  --mint-border-radius: 10px;
-  --mint-hover-shadow: 4px 4px var(--tertiary-high);
-  --mint-color-mint: #75bdad;
-  --mint-color-blue: #e5f8ff;
-}
+// Variante "Blau": aktiv, wenn das Farbschema einen dunklen Header hat (sanforum-blau)
+$sf-blue-header: lightness($header_background) < 50% and lightness($secondary) > 50%;
 
 body {
-  --d-button-border-radius: var(--mint-border-radius);
+  --d-button-border-radius: var(--sf-radius-sm);
+  --d-input-border-radius: var(--sf-radius-sm);
+  --d-border-radius: var(--sf-radius);
+  --d-nav-underline-height: 0;
 }
 
-$color-square-gradient: linear-gradient(
-  4deg,
-  rgb(143, 236, 202, 0.29) 55%,
-  rgb(74, 247, 255, 0.08) 100%
-);
-$color-square-webkit-gradient: -webkit-linear-gradient(
-  4deg,
-  rgb(143, 236, 202, 0.29) 55%,
-  rgb(74, 247, 255, 0.08) 100%
-);
+@mixin sf-card {
+  background: var(--sf-card);
+  border: 1px solid var(--sf-line);
+  border-radius: var(--sf-radius);
+}
+
+@mixin sf-heading {
+  font-family: var(--sf-font-heading);
+  font-weight: 700;
+  letter-spacing: 0;
+}
